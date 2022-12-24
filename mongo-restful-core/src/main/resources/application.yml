@@ -1,5 +1,3 @@
 micronaut:
   application:
     name: mongo-restful-core
-mongodb:
-  uri: mongodb://dynamicform:dynamicform1234@pre-mongo.hayond.site:30077/dynamicform
