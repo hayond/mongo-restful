@@ -1,0 +1,6 @@
+
+rootProject.name="template"
+
+include  'revolution'
+
+project(":revolution").projectDir = file("../revolution")

@@ -1,0 +1,30 @@
+plugins {
+    id("io.micronaut.application") version "3.6.7"
+}
+
+version = "0.1"
+group = "site.hayond.revolution"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Fix 'warning: unknown enum constant When.MAYBE'
+    compileOnly("com.google.code.findbugs:jsr305")
+    // Problem
+    compileOnly("io.micronaut.problem:micronaut-problem-json")
+    compileOnly("io.micronaut:micronaut-http")
+}
+
+java {
+    sourceCompatibility = JavaVersion.toVersion("17")
+    targetCompatibility = JavaVersion.toVersion("17")
+}
+
+micronaut {
+    processing {
+        incremental(true)
+        annotations("site.hayond.*")
+    }
+}
