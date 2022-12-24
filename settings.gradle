@@ -1,0 +1,4 @@
+rootProject.name = 'mongo-restful'
+
+include 'revolution'
+include 'mongo-restful-core'
