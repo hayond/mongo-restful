@@ -9,7 +9,10 @@ import java.util.Map;
 @Introspected
 public class Result<T> {
 
-    private static final HttpStatus HTTP_STATUS_OK = HttpStatus.OK;
+    public static final HttpStatus HTTP_STATUS_OK = HttpStatus.OK;
+    public static final HttpStatus HTTP_STATUS_BAD_REQUEST = HttpStatus.BAD_REQUEST;
+    public static final HttpStatus HTTP_STATUS_NOT_FOUND = HttpStatus.NOT_FOUND;
+    public static final HttpStatus HTTP_STATUS_INTERNAL_SERVER_ERROR = HttpStatus.INTERNAL_SERVER_ERROR;
 
     private Integer status = HTTP_STATUS_OK.getCode();
     private String title = HTTP_STATUS_OK.getReason();
@@ -83,6 +86,24 @@ public class Result<T> {
 
     public static <T> Result<T> valueOf(T data) {
         return new Result<>(data);
+    }
+
+    public static Result<Void> valueOf(Integer status, String title) {
+        return valueOf(status,title, null);
+    }
+
+    public static Result<Void> valueOf(Integer status, String title, String detail) {
+        Result<Void> result = new Result<>();
+        result.setStatus(status);
+        result.setTitle(title);
+        result.setDetail(detail);
+        return result;
+    }
+
+    public static Result<Void> valueOfStatus(Integer status) {
+        Result<Void> result = new Result<>();
+        result.setStatus(status);
+        return result;
     }
 
     public static Result<Void> valueOfTitle(String title) {
